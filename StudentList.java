@@ -7,17 +7,21 @@ public class StudentList
 	{
 
 //		Check arguments
-		if(args[0].equals("a"))
+		if (args.length!=1 )
+		 {
+			System.out.println("No argument passed , please enter a | r | c | ? | +");
+		 }
+		else if(args[0].equals("a"))
 		 {
 			System.out.println("Loading data ...");			
 			try
 			 {
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String r = s.readLine();
-				String i[] = r.split(",");			
-				for(String j : i)
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
+				String Linereader = reader.readLine();
+				String Names[] = Linereader.split(",");			
+				for(String name : Names)
 				 { 
-					 System.out.println(j);
+					 System.out.println(name);
 				 }
 			} catch (Exception e)
 			{
@@ -30,13 +34,13 @@ public class StudentList
 			System.out.println("Loading data ...");			
 			try
 			 {
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String r = s.readLine();
-				String i[] = r.split(",");	
-				Random x = new Random();
-				int size=i.length;
-				int y = x.nextInt()%size;
-				System.out.println(i[y]);
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
+				String Linereader = reader.readLine();
+				String Names[] = Linereader.split(",");	
+				Random random_number = new Random();
+				int size=Names.length;
+				int index =Math.abs(random_number.nextInt()%size) ;
+				System.out.println(Names[index]);
 			} catch (Exception e)
 			{
 
@@ -48,14 +52,14 @@ public class StudentList
 			System.out.println("Loading data ...");			
 			try 
 			{
-				BufferedWriter s = new BufferedWriter(new FileWriter("students.txt", true));
+				BufferedWriter writer = new BufferedWriter(new FileWriter("students.txt", true));
 				String t = args[0].substring(1);
-	        		Date d = new Date();
-	        		String df = "dd/mm/yyyy-hh:mm:ss a";
-	        		DateFormat dateFormat = new SimpleDateFormat(df);
-	        		String fd= dateFormat.format(d);
-				s.write(", "+t+"\nList last updated on "+fd);
-				s.close();
+	        	Date date = new Date();
+	        	String date_time = "dd/mm/yyyy-hh:mm:ss a";
+	        	DateFormat dateFormat = new SimpleDateFormat(date_time);
+	        	String dateformate= dateFormat.format(date);
+				writer.write(", "+t+"\nList last updated on "+dateformate);
+				writer.close();
 			} catch (Exception e)
 			{
 
@@ -68,14 +72,14 @@ public class StudentList
 			System.out.println("Loading data ...");			
 			try 
 			{
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String r = s.readLine();
-				String i[] = r.split(", ");	
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
+				String Linereader = reader.readLine();
+				String Names[] = Linereader.split(", ");	
 				boolean done = false;
-				String t = args[0].substring(1);
-				for(int idx = 0; idx<i.length && !done; idx++)
+				String argument = args[0].substring(1);
+				for(int index = 0; index<Names.length && !done; index++)
 				 {
-					if(i[idx].equals(t)) 
+					if(Names[index].equals(argument)) 
 					{
 						System.out.println("We found it!");
 						done=true;
@@ -92,14 +96,14 @@ public class StudentList
 			System.out.println("Loading data ...");			
 			try
 			 {
-				BufferedReader s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
-				String D = s.readLine();
-				char a[] = D.toCharArray();			
+				BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt"))); 
+				String Linereader = reader.readLine();
+				char Words[] = Linereader.toCharArray();			
 				boolean in_word = false;
 				int count=0;
-				for(char c:a)
+				for(char character:Words)
 				 {
-					if(c ==' ') 
+					if(character ==' ') 
 					{
 						if (!in_word) 
 						{
@@ -111,12 +115,17 @@ public class StudentList
 						}			
 					}
 			}
-			System.out.println(count +" word(s) found " + a.length);
+			System.out.println(count +" word(s) found " + Words.length);
 			} catch (Exception e)
 			{
 
 			} 
 			System.out.println("Data Loaded.");				
+		}
+		
+		else
+		{
+			System.out.println("Wrong argument passed , please enter a | r | c | ? | +");
 		}
 	}
 }
