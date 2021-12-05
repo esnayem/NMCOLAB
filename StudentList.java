@@ -116,7 +116,7 @@ public class StudentList
 			{
 
 			} 
-			System.out.println("Data Loaded.");				
+			System.out.println("Data Loaded.");	 			
 		}
 	}
 }
