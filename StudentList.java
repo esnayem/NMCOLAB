@@ -7,7 +7,11 @@ public class StudentList
 	{
 
 //		Check arguments
-		if(args[0].equals("a"))
+		if (args.length!=1 )
+		 {
+			System.out.println("No argument passed , please enter a | r | c | ? | +");
+		 }
+		else if(args[0].equals("a"))
 		 {
 			System.out.println("Loading data ...");			
 			try
@@ -117,6 +121,11 @@ public class StudentList
 
 			} 
 			System.out.println("Data Loaded.");				
+		}
+		
+		else
+		{
+			System.out.println("Wrong argument passed , please enter a | r | c | ? | +");
 		}
 	}
 }
